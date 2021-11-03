@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../app/app';
+import TimeService from '../../services/time-service';
 
 
 const FormTransmitter = () => {
@@ -7,6 +8,7 @@ const FormTransmitter = () => {
   // ограничить ввод в поле от 1 до 4 цифр
   // переменная-массив separators, в котором символы для разбивки строки
   const onItemAdded = useContext(AppContext).onItemAdded;
+  const timeService = new TimeService();
   const [formData, setFormData] = useState({ start: '', end: '' });
 
 
@@ -17,9 +19,7 @@ const FormTransmitter = () => {
     setFormData((oldState) => {
       return {...oldState, [name]: value};
     });
-    console.log('inputChange', formData);
   };
-
 
   // отправка формы
   const onFormSubmit = (ev) => {
@@ -40,7 +40,6 @@ const FormTransmitter = () => {
         placeholder="12:00"
         name = {'start'}
         onChange={onInputChange}
-        // value = {() => formData[this.name]}
       />
       <span> - </span> 
       <input 
@@ -48,7 +47,6 @@ const FormTransmitter = () => {
         maxLength={5}
         placeholder="14:00"
         name={'end'}
-        // value = {() => formData[this.name]}
         onChange={onInputChange}
       />
       

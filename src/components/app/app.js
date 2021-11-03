@@ -3,7 +3,7 @@ import './app.css';
 
 import IntervalList from '../interval-list';
 import FormTransmitter from '../form-transmitter/form-transmitter';
-
+import TimeService from '../../services/time-service';
 
 export const AppContext = createContext();
 
@@ -16,11 +16,19 @@ const App = () => {
     {start: '15:00', end: '18:00'},
   ]);
 
+  const timeService = new TimeService();
+
   // добавить новый интервал
-  const onItemAdded = (item) => {
+  const onItemAdded = ({start, end}) => {
+
+    const formatedInput = {
+      start: timeService.beautifyUserInput(start),
+      end: timeService.beautifyUserInput(end)
+    };
+
     setTimeIntervals((oldState) => {
       console.log('onItemAdded');
-      return [...oldState, item];
+      return [...oldState, formatedInput];
     })
   };
 
