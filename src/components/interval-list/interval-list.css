@@ -1,0 +1,17 @@
+.interval-list {
+  width: fit-content;
+  /* height: 50px; */
+  background-color: lightskyblue;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.interval-list li {
+  list-style-type: none;
+}
