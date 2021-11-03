@@ -3,12 +3,12 @@ import { AppContext } from '../app/app';
 
 
 const FormTransmitter = () => {
-
   // проверять ввод на корректность
   // ограничить ввод в поле от 1 до 4 цифр
   // переменная-массив separators, в котором символы для разбивки строки
   const onItemAdded = useContext(AppContext).onItemAdded;
   const [formData, setFormData] = useState({ start: '', end: '' });
+
 
   // ввод значений в инпуты
   const onInputChange = (ev) => {
@@ -20,6 +20,7 @@ const FormTransmitter = () => {
     console.log('inputChange', formData);
   };
 
+
   // отправка формы
   const onFormSubmit = (ev) => {
     ev.preventDefault();
@@ -28,8 +29,6 @@ const FormTransmitter = () => {
     ev.target.reset();
     console.log('submit', formData);
   };
-
-
 
   return (
     <form
