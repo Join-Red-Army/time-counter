@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../app/app';
-import TimeService from '../../services/time-service';
 
   // проверять ввод на корректность
 
 const FormTransmitter = () => {
   
-  const addTimeObject = useContext(AppContext).addTimeObject;
+  const addTimeObject = useContext(AppContext).addUserInput;
   const [userInputData, setUserInputData] = useState({ startInput: '', endInput: '' });
 
 
@@ -44,7 +43,7 @@ const FormTransmitter = () => {
         type="text"
         maxLength={5}
         placeholder="12:00"
-        name = {'start'}
+        name = {'startInput'}
         onChange={onInputChange}
       />
       <span> - </span> 
@@ -52,7 +51,7 @@ const FormTransmitter = () => {
         type="text"
         maxLength={5}
         placeholder="14:00"
-        name={'end'}
+        name={'endInput'}
         onChange={onInputChange}
       />
       

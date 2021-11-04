@@ -7,15 +7,17 @@ import TimeService from '../../services/time-service';
 
 export const AppContext = createContext();
 
+
 const App = () => {
+
   // state
   const [userInputs, setUserInputs] = useState([
     {startInput: '12:00', endInput: '13:00'},
     {startInput: '14:00', endInput: '17:00'}
   ]);
 
-
   const timeService = new TimeService();
+  
   let maxKey = 0;
 
   const timeObjects = userInputs.map((item) => {
@@ -42,7 +44,7 @@ const App = () => {
   // отрисовывает страницу
   const update = () => {
     return (
-      <AppContext.Provider value={ {timeObjects,  setUserInputs} }>
+      <AppContext.Provider value={ {timeObjects,  addUserInput} }>
         <IntervalList />
         <FormTransmitter />
       </AppContext.Provider>

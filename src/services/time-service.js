@@ -73,7 +73,9 @@ export default class TimeService {
   // получить разницу между началом и концом события
   // на вход подаются значения в минутах
   _getInterval = (start, end) => {
-    const minutesInterval = start < end ? (end - start) : (24 - start) + end;
+    const minutesInterval = start < end ? (end - start) : (24 * 60 - start) + end;
+
+    console.log(start, end);
     
     const hours = Math.floor(minutesInterval / 60);
     const minutes = minutesInterval % 60;
