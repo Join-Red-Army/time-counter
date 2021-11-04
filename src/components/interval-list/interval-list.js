@@ -7,6 +7,7 @@ import IntervalItem from '../interval-item';
 
 const IntervalList = () => {
 
+  
   const timeIntervals = useContext(AppContext).timeIntervals
     .map((data) => <IntervalItem data={data}/>
     );

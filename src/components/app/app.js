@@ -16,6 +16,7 @@ const App = () => {
     {start: '15:00', end: '18:00'},
   ]);
 
+
   const timeService = new TimeService();
 
   // добавить новый интервал
@@ -38,7 +39,7 @@ const App = () => {
   // отрисовывает страницу
   const update = () => {
     return (
-      <AppContext.Provider value={ {timeIntervals, onItemAdded} }>
+      <AppContext.Provider value={ {timeIntervals, onItemAdded } }>
         <IntervalList />
         <FormTransmitter />
       </AppContext.Provider>

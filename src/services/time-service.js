@@ -1,13 +1,7 @@
-
 export default class TimeService {
 
-  stringToMinutes = (str) => {
-    const [hours, minutes] = str.split(':').map((item) => Number(item));
-    return (hours * 60) + minutes;
-  }
-
   getReadableDifference = (start, end) => {
-    const dif = this.stringToMinutes(end) - this.stringToMinutes(start);
+    const dif = this._stringToMinutes(end) - this._stringToMinutes(start);
     
     let hours = this._addZeros( Math.floor(dif / 60) );
     let minutes = this._addZeros(dif % 60);
@@ -16,14 +10,18 @@ export default class TimeService {
     return (`${hours}:${minutes}`);
   }
 
-
   beautifyUserInput = (str) => {
     return this._useCorrectSeparator(str)
       .split(':')
       .map((num) => this._addZeros(num))
-      .join(':');
+      .join(':')
+      .slice(0, 5);
   };
 
+  _stringToMinutes = (str) => {
+    const [hours, minutes] = str.split(':').map((item) => Number(item));
+    return (hours * 60) + minutes;
+  }
 
   _useCorrectSeparator = (userInput) => {
     const str = userInput.trim();
@@ -49,6 +47,5 @@ export default class TimeService {
     value = Number(value);
     return (value < 10) ? `0${value}` : value;
   }
-
 
 };

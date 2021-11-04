@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TimeService from '../../services/time-service';
+import { AppContext } from '../app/app';
 import './interval-item.css';
 
 
@@ -9,6 +10,7 @@ const IntervalItem = ({data}) => {
   const timeService = new TimeService();
   
   const dif = timeService.getReadableDifference(start, end);
+
   // console.log('intervaItem', start, end, dif);
 
   return (
