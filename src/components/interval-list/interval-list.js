@@ -8,10 +8,9 @@ import IntervalItem from '../interval-item';
 const IntervalList = () => {
 
   // получить объекты из контекста
-  const timeIntervals = useContext(AppContext).timeObjects;
-
   // сделать из объектов li-элементы
-  timeIntervals.map( (data) => <IntervalItem data={data}/> );
+  let timeIntervals = useContext(AppContext).timeObjects
+    .map( (data) => <IntervalItem data={data} key={data.key}/> );
 
   return (
     <ul className='interval-list'>

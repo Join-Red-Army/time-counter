@@ -3,8 +3,8 @@ export default class TimeService {
   getCompleteDataObject = ({startInput, endInput}) => {
 
     const dataObject = {
-      start = this.getDetailedData(startInput),
-      end = this.getDetailedData(endInput)
+      start: this.getDetailedData(startInput),
+      end: this.getDetailedData(endInput)
     };
 
     const intervalObject = this._getInterval(
@@ -28,23 +28,24 @@ export default class TimeService {
     const values = {};
     const separatedArray = str.split(this._getSeparator(str));
 
+
     const separatedNumbers = separatedArray.map((el) => Number(el));
     const separatedStrings = separatedArray.map((el) => this._addZeros(el));
 
     [values.numHours = 0, values.numMinutes = 0] = separatedNumbers;
     [values.strHours = '00', values.strMinutes = '00'] = separatedStrings;
     
-    values.formatedTime = values.strHours + values.strMinutes;
-    values.timeInMinutes = _getTimeInMinutes(values.numHours, values.numMinutes);
+    values.formatedTime = values.strHours + ':' + values.strMinutes;
+    values.timeInMinutes = this._getTimeInMinutes(values.numHours, values.numMinutes);
 
-    console.log('getDetailedData', values);
     return values;
   }
 
-  // пересчитать часы и минуты в минуты
+  // пересчитать часы и минуты в только минуты
   _getTimeInMinutes = (hours = 0, minutes = 0) => (hours * 60) + minutes;
 
   // добавить недостающие нули строкам, если надо
+  // чтобы было 01, 02...
   _addZeros = (value) => {
     value = String(value);
 
@@ -58,11 +59,11 @@ export default class TimeService {
   };
 
   // найти символ, которым пользователь разделил часы и минуты
+  // на вход подаётся строка с возмодным разделителем
   _getSeparator = (str) => {
     for (let char of str) {
-      const char = Number(char);
-
-      if (Number.isNaN(char)) {
+      const convertedChar = Number(char);
+      if (Number.isNaN(convertedChar)) {
         return char;
       };
     }
@@ -70,10 +71,18 @@ export default class TimeService {
   }
 
   // получить разницу между началом и концом события
+  // на вход подаются значения в минутах
   _getInterval = (start, end) => {
-    const interval = start < end ? (end - start) : (24 - start) + end;
-    const readableInterval = Math.floor(interval / 24) + ':' + interval % 60;
-    return { interval, readableInterval };
+    const minutesInterval = start < end ? (end - start) : (24 - start) + end;
+    
+    const hours = Math.floor(minutesInterval / 60);
+    const minutes = minutesInterval % 60;
+
+    const formatedInterval = [hours, minutes]
+      .map(value => this._addZeros(value))
+      .join(':');
+
+    return { minutesInterval, formatedInterval };
   }
 
 };

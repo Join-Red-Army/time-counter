@@ -3,19 +3,18 @@ import TimeService from '../../services/time-service';
 import { AppContext } from '../app/app';
 import './interval-item.css';
 
+/* Объект на вход:
+  numHours, numMinutes
+  strHours, strMinutes
+  formatedTime, timeInMinutes
+*/
 
 const IntervalItem = ({data}) => {
-
-  const { start, end } = data;
-  const timeService = new TimeService();
+  const {start, end, formatedInterval} = {...data};
   
-  const dif = timeService.getReadableDifference(start, end);
-
-  // console.log('intervaItem', start, end, dif);
-
   return (
     <li className='interval-item'>
-      {`${start} - ${end} => ${dif}`}
+      {`${start.formatedTime} - ${end.formatedTime} => ${formatedInterval}`}
     </li>
   );
 };

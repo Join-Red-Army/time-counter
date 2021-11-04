@@ -7,7 +7,7 @@ import TimeService from '../../services/time-service';
 const FormTransmitter = () => {
   
   const addTimeObject = useContext(AppContext).addTimeObject;
-  const [userInputData, setUserInputData] = useState({ start: '', end: '' });
+  const [userInputData, setUserInputData] = useState({ startInput: '', endInput: '' });
 
 
   // когда пользователь вбивает данные в инпуты,
@@ -25,12 +25,12 @@ const FormTransmitter = () => {
   const onFormSubmit = (ev) => {
     ev.preventDefault();
 
-    if (userInputData.start === '' || userInputData.end === '') {
+    if (userInputData.startInput === '' || userInputData.endInput === '') {
       return;
     }
 
     addTimeObject(userInputData);
-    setUserInputData({ start: '', end: '' });
+    setUserInputData({ startInput: '', endInput: '' });
     ev.target.reset();
     console.log('submit', userInputData);
   };

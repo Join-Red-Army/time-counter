@@ -7,17 +7,21 @@ import TimeService from '../../services/time-service';
 
 export const AppContext = createContext();
 
-
 const App = () => {
   // state
   const [userInputs, setUserInputs] = useState([
-    {start: '12:00', end: '13:00'},
-    {start: '14:00', end: '17:00'}
+    {startInput: '12:00', endInput: '13:00'},
+    {startInput: '14:00', endInput: '17:00'}
   ]);
 
-  const timeService = new TimeService();
 
-  const timeObjects = userInputs.map((item) => timeService.getCompleteDataObject(item));
+  const timeService = new TimeService();
+  let maxKey = 0;
+
+  const timeObjects = userInputs.map((item) => {
+    const key = ++maxKey;
+    return {...timeService.getCompleteDataObject(item), key };
+  });
     /* Объект на выходе:
     numHours, numMinutes
     strHours, strMinutes
