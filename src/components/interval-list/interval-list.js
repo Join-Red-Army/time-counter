@@ -7,10 +7,11 @@ import IntervalItem from '../interval-item';
 
 const IntervalList = () => {
 
-  
-  const timeIntervals = useContext(AppContext).timeIntervals
-    .map((data) => <IntervalItem data={data}/>
-    );
+  // получить объекты из контекста
+  const timeIntervals = useContext(AppContext).timeObjects;
+
+  // сделать из объектов li-элементы
+  timeIntervals.map( (data) => <IntervalItem data={data}/> );
 
   return (
     <ul className='interval-list'>
