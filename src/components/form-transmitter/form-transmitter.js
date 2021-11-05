@@ -24,7 +24,7 @@ const FormTransmitter = () => {
   const onFormSubmit = (ev) => {
     ev.preventDefault();
 
-    if (userInputData.startInput === '' || userInputData.endInput === '') {
+    if (userInputData.startInput === '' && userInputData.endInput === '') {
       return;
     }
 

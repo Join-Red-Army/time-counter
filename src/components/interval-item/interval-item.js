@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import TimeService from '../../services/time-service';
 import { AppContext } from '../app/app';
 import './interval-item.css';
 

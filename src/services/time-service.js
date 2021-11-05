@@ -63,7 +63,7 @@ export default class TimeService {
   _getSeparator = (str) => {
     for (let char of str) {
       const convertedChar = Number(char);
-      if (Number.isNaN(convertedChar)) {
+      if (Number.isNaN(convertedChar) || char === ' ') {
         return char;
       };
     }
@@ -74,8 +74,6 @@ export default class TimeService {
   // на вход подаются значения в минутах
   _getInterval = (start, end) => {
     const minutesInterval = start < end ? (end - start) : (24 * 60 - start) + end;
-
-    console.log(start, end);
     
     const hours = Math.floor(minutesInterval / 60);
     const minutes = minutesInterval % 60;

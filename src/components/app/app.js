@@ -54,7 +54,6 @@ const App = () => {
   // рендер страницы, когда изменяется состав userInputs
   useEffect( () => {
     update();
-    console.log('useEffect');
   }, [userInputs] );
 
   // первый запуск - вручную
