@@ -41,6 +41,16 @@ export default class TimeService {
     return values;
   }
 
+  getFormatedTimeFromIntervals = (intervals) => {
+    const allMinutes = intervals.reduce(
+      (acc, {minutesInterval}) => acc += minutesInterval, 0);
+    
+    const hours = this._addZeros(Math.floor(allMinutes / 60));
+    const minutes = this._addZeros(allMinutes % 60);
+
+    return `${hours}:${minutes}`;
+  }
+
   // пересчитать часы и минуты в только минуты
   _getTimeInMinutes = (hours = 0, minutes = 0) => (hours * 60) + minutes;
 

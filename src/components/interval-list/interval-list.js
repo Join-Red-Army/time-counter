@@ -3,6 +3,7 @@ import './interval-list.css';
 
 import { AppContext } from '../app/app';
 import IntervalItem from '../interval-item';
+import SummaryItem from '../summary-item';
 
 
 const IntervalList = () => {
@@ -15,6 +16,7 @@ const IntervalList = () => {
   return (
     <ul className='interval-list'>
       {timeIntervals}
+      <SummaryItem />
     </ul>
   );
 };

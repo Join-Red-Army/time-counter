@@ -10,17 +10,20 @@ export const AppContext = createContext();
 
 const App = () => {
 
+  let sumIntervals = 0;
+
   // state
   const [userInputs, setUserInputs] = useState([
     {startInput: '12:00', endInput: '13:00'},
     {startInput: '14:00', endInput: '17:00'}
   ]);
 
+
   const timeService = new TimeService();
   
   let maxKey = 0;
 
-  const timeObjects = userInputs.map((item) => {
+  let timeObjects = userInputs.map((item) => {
     const key = ++maxKey;
     return {...timeService.getCompleteDataObject(item), key };
   });
@@ -43,8 +46,10 @@ const App = () => {
 
   // отрисовывает страницу
   const update = () => {
+    sumIntervals = timeService.getFormatedTimeFromIntervals(timeObjects);
+
     return (
-      <AppContext.Provider value={ {timeObjects,  addUserInput} }>
+      <AppContext.Provider value={ {timeObjects, addUserInput, sumIntervals} }>
         <IntervalList />
         <FormTransmitter />
       </AppContext.Provider>
