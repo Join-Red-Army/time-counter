@@ -10,36 +10,34 @@ export const AppContext = createContext();
 
 const App = () => {
 
-  let sumIntervals = 0;
-
   // state
+  // обновляется только этот массив с userInputs,
+  // всё остальное - рассчитывается при каждом update
   const [userInputs, setUserInputs] = useState([
     {startInput: '12:00', endInput: '13:00'},
     {startInput: '14:00', endInput: '17:00'}
   ]);
 
-
-  const timeService = new TimeService();
-  
-  let maxKey = 0;
-
-  let timeObjects = userInputs.map((item) => {
-    const key = ++maxKey;
-    return {...timeService.getCompleteDataObject(item), key };
-  });
-    /* Объект на выходе:
-    numHours, numMinutes
-    strHours, strMinutes
-    formatedTime, timeInMinutes */
-
-
-  // добавить новые данные от пользователя
+  // добавить новые данные от пользователя в userInputs
+  // и назначить им key
   const addUserInput = (userInputData) => {
     setUserInputs((oldInputs) => {
-      console.log('addUserInput');
+      userInputData.key = ++maxKey 
       return [...oldInputs, userInputData];
     });
   };
+
+  let maxKey = 100;
+  let sumIntervals = 0;
+  const timeService = new TimeService();  
+
+  // timeObjects - это обработанный массив userInputs,
+  // в котором распаршены инпуты пользователя
+  // и возвращён массив объектов с детальной информацией
+  let timeObjects = userInputs.map((item) => {
+    return {...timeService.getCompleteDataObject(item), key: item['key'] };
+  });
+
 
   // удалить интервал
   // 

@@ -13,6 +13,7 @@ const IntervalItem = ({data}) => {
   
   return (
     <li className='interval-item'>
+      <button type='button'>delete</button>
       {`${start.formatedTime} - ${end.formatedTime} => ${formatedInterval}`}
     </li>
   );
