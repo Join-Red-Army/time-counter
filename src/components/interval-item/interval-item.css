@@ -1,8 +1,30 @@
 .interval-item {
-  margin: 10px;
-  padding: 5px;
+  box-sizing: border-box;
+  
+  margin: 5px;
+  padding: 10px 30px;
+  width: 100%;
+
+  display: flex;
+  justify-content:space-between;
+
+  border-radius: 8px;
 
   font-family: monospace;
+  font-size: 1.3rem;
 
-  background-color: lightgray;
+  background-color: lightcyan;
+}
+
+.delete-btn {
+  color: gray;
+  margin-right: 10px;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+}
+
+.input-value {
+  color: gray;
 }

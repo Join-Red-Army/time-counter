@@ -1,8 +1,7 @@
 .interval-list {
-  width: fit-content;
-  /* height: 50px; */
-  background-color: lightskyblue;
+  box-sizing: border-box;
 
+  width: 100%;
   padding: 0;
   margin: 0;
 

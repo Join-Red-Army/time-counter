@@ -1,0 +1,6 @@
+.app {
+  /* border: 1px solid black; */
+  box-sizing: border-box;
+  margin: 2rem auto;
+  max-width: 400px;
+}

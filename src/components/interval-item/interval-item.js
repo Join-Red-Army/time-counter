@@ -8,11 +8,21 @@ const IntervalItem = ({data}) => {
   
   return (
     <li className='interval-item'>
-      <button 
-        type='button'
-        onClick={() => deleteItem(key)}
-        >delete</button>
-      {`${start.formatedTime} - ${end.formatedTime} => ${formatedInterval}`}
+      <span className='input-value'>
+        <button 
+          className='delete-btn'
+          type='button'
+          onClick={() => deleteItem(key)}>
+            <i className="fa fa-trash-o" />
+          </button>
+
+        {`${start.formatedTime} - ${end.formatedTime}`}
+      </span>
+
+      <span>
+        {`=> ${formatedInterval}`}
+      </span>
+
     </li>
   );
 };

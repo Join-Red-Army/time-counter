@@ -8,7 +8,7 @@ const SummaryItem = () => {
 
   return (
     <li className='summary-item'>
-      {`Итого: ${sumIntervals}`}
+      {`итого => ${sumIntervals}`}
     </li>
   );
 };

@@ -58,10 +58,12 @@ const App = () => {
     sumIntervals = timeService.getFormatedTimeFromIntervals(timeObjects);
 
     return (
-      <AppContext.Provider value={ {timeObjects, addUserInput, deleteItem, sumIntervals} }>
-        <IntervalList />
-        <FormTransmitter />
-      </AppContext.Provider>
+      <div className='app'>
+        <AppContext.Provider value={ {timeObjects, addUserInput, deleteItem, sumIntervals} }>
+          <IntervalList />
+          <FormTransmitter />
+        </AppContext.Provider>
+      </div>
     );
   };
 

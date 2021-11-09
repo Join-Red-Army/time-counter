@@ -1,0 +1,23 @@
+.form-transmitter {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px 30px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-family: monospace;
+  font-size: 1.3rem;
+}
+
+.form-transmitter input {
+  width: 4.2rem;
+
+  font-family: monospace;
+  font-size: 1.3rem;
+}
+
+.form-transmitter button {
+  cursor: pointer;
+}
