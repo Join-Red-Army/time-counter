@@ -2,9 +2,6 @@ import React, { useState, useContext } from 'react';
 import './form-transmitter.css';
 
 import { AppContext } from '../app/app';
-import TimeService from '../../services/time-service';
-
-const timeService = new TimeService();
 
 const FormTransmitter = () => {
   
@@ -27,7 +24,7 @@ const FormTransmitter = () => {
     ev.preventDefault();
     if (userInputData.startInput === '' && userInputData.endInput === '') {
       return;
-    } 
+    }
     
     addTimeObject(userInputData);
     setUserInputData({ startInput: '', endInput: '' });
@@ -46,6 +43,7 @@ const FormTransmitter = () => {
           maxLength={5}
           placeholder="12:00"
           name = {'startInput'}
+          pattern='\b[0-2]?[0-9]:[0-5][0-9]\b'
           onBlur={onInputBlur}
         />
         <span> - </span> 
@@ -54,6 +52,7 @@ const FormTransmitter = () => {
           maxLength={5}
           placeholder="14:00"
           name={'endInput'}
+          pattern='\b[0-2]?[0-9]:[0-5][0-9]\b'
           onBlur={onInputBlur}
         />
       </span>
