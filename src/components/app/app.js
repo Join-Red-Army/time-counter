@@ -45,7 +45,7 @@ const App = () => {
   const deleteItem = (key) => {
 
     setUserInputs((oldInputs) => {
-      const deletedIndex = oldInputs.findIndex((el) => el.key == key);
+      const deletedIndex = oldInputs.findIndex((el) => el.key === key);
       
       return [
         ...oldInputs.slice(0, deletedIndex),
