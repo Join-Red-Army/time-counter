@@ -7,6 +7,8 @@ import TimeService from '../../services/time-service';
 
 export const AppContext = createContext();
 
+let maxKey = 100;
+const timeService = new TimeService();
 
 const App = () => {
 
@@ -14,40 +16,49 @@ const App = () => {
   // обновляется только этот массив с userInputs,
   // всё остальное - рассчитывается при каждом update
   const [userInputs, setUserInputs] = useState([
-    {startInput: '12:00', endInput: '13:00'},
-    {startInput: '14:00', endInput: '17:00'}
+    {startInput: '12:00', endInput: '13:00', key: 1},
+    {startInput: '14:00', endInput: '17:00', key: 2}
   ]);
 
   // добавить новые данные от пользователя в userInputs
   // и назначить им key
   const addUserInput = (userInputData) => {
     setUserInputs((oldInputs) => {
-      userInputData.key = ++maxKey 
+      userInputData.key = ++maxKey;
+      console.log('key', userInputData);
       return [...oldInputs, userInputData];
     });
   };
 
-  let maxKey = 100;
   let sumIntervals = 0;
-  const timeService = new TimeService();  
+  
 
   // timeObjects - это обработанный массив userInputs,
   // в котором распаршены инпуты пользователя
   // и возвращён массив объектов с детальной информацией
   let timeObjects = userInputs.map((item) => {
-    return {...timeService.getCompleteDataObject(item), key: item['key'] };
+    return {...timeService.getCompleteDataObject(item), key: item.key};
   });
 
 
   // удалить интервал
-  // 
+  const deleteItem = (key) => {
+
+    setUserInputs((oldInputs) => {
+      const deletedIndex = oldInputs.findIndex((el) => el.key == key);
+      
+      return [
+        ...oldInputs.slice(0, deletedIndex),
+        ...oldInputs.slice(deletedIndex + 1)]
+    });
+  };
 
   // отрисовывает страницу
   const update = () => {
     sumIntervals = timeService.getFormatedTimeFromIntervals(timeObjects);
 
     return (
-      <AppContext.Provider value={ {timeObjects, addUserInput, sumIntervals} }>
+      <AppContext.Provider value={ {timeObjects, addUserInput, deleteItem, sumIntervals} }>
         <IntervalList />
         <FormTransmitter />
       </AppContext.Provider>

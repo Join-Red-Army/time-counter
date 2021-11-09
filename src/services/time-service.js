@@ -41,6 +41,12 @@ export default class TimeService {
     return values;
   }
 
+  // getFormatedTimeFromInput = (value) => {
+  //   const separatedArray = value.split(this._getSeparator(value));
+  //   const separatedNumbers = separatedArray.map((el) => Number(el));
+  //   const separatedStrings = separatedArray.map((el) => this._addZeros(el));
+  // }
+
   getFormatedTimeFromIntervals = (intervals) => {
     const allMinutes = intervals.reduce(
       (acc, {minutesInterval}) => acc += minutesInterval, 0);

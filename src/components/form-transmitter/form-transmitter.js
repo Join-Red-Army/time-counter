@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../app/app';
+import TimeService from '../../services/time-service';
 
-  // проверять ввод на корректность
+const timeService = new TimeService();
 
 const FormTransmitter = () => {
   
@@ -11,7 +12,8 @@ const FormTransmitter = () => {
 
   // когда пользователь вбивает данные в инпуты,
   // данные записываются в state
-  const onInputChange = (ev) => {
+  const onInputBlur = (ev) => {
+    ev.target.value = timeService.getDetailedData(ev.target.value).formatedTime;
     const {name, value} = ev.target;
     setUserInputData((oldState) => {
       return {...oldState, [name]: value};
@@ -31,7 +33,6 @@ const FormTransmitter = () => {
     addTimeObject(userInputData);
     setUserInputData({ startInput: '', endInput: '' });
     ev.target.reset();
-    console.log('submit', userInputData);
   };
 
 
@@ -44,7 +45,7 @@ const FormTransmitter = () => {
         maxLength={5}
         placeholder="12:00"
         name = {'startInput'}
-        onChange={onInputChange}
+        onBlur={onInputBlur}
       />
       <span> - </span> 
       <input 
@@ -52,7 +53,7 @@ const FormTransmitter = () => {
         maxLength={5}
         placeholder="14:00"
         name={'endInput'}
-        onChange={onInputChange}
+        onBlur={onInputBlur}
       />
       
       <button>посчитать интервал</button>
