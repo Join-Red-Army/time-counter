@@ -14,7 +14,7 @@ const FormTransmitter = () => {
   // когда пользователь вбивает данные в инпуты,
   // данные записываются в state
   const onInputBlur = (ev) => {
-    ev.target.value = timeService.getDetailedData(ev.target.value.trim()).formatedTime;
+    // ev.target.value = timeService.getDetailedData(ev.target.value.trim()).formatedTime;
     const {name, value} = ev.target;
     setUserInputData((oldState) => {
       return {...oldState, [name]: value};
@@ -27,7 +27,8 @@ const FormTransmitter = () => {
     ev.preventDefault();
     if (userInputData.startInput === '' && userInputData.endInput === '') {
       return;
-    }
+    } 
+    
     addTimeObject(userInputData);
     setUserInputData({ startInput: '', endInput: '' });
     ev.target.reset();
