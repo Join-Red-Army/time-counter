@@ -10,8 +10,7 @@ const FormTransmitter = () => {
 
   // когда пользователь вбивает данные в инпуты,
   // данные записываются в state
-  const onInputBlur = (ev) => {
-    // ev.target.value = timeService.getDetailedData(ev.target.value.trim()).formatedTime;
+  const onInputChange = (ev) => {
     const {name, value} = ev.target;
     setUserInputData((oldState) => {
       return {...oldState, [name]: value};
@@ -44,7 +43,7 @@ const FormTransmitter = () => {
           placeholder="12:00"
           name = {'startInput'}
           pattern='\b[0-2]?[0-9]:[0-5][0-9]\b'
-          onBlur={onInputBlur}
+          onChange={onInputChange}
         />
         <span> - </span> 
         <input 
@@ -53,7 +52,7 @@ const FormTransmitter = () => {
           placeholder="14:00"
           name={'endInput'}
           pattern='\b[0-2]?[0-9]:[0-5][0-9]\b'
-          onBlur={onInputBlur}
+          onChange={onInputChange}
         />
       </span>
       
